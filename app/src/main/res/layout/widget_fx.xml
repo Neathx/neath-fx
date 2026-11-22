@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_bg"
+    android:orientation="vertical"
+    android:padding="14dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/pair"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="🇹🇭 THB  →  🇨🇦 CAD"
+            android:textColor="@color/widget_text"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/btn_swap"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:background="@drawable/btn_circle"
+            android:contentDescription="@string/swap"
+            android:padding="7dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_swap" />
+
+        <ImageButton
+            android:id="@+id/btn_refresh"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="6dp"
+            android:background="@drawable/btn_circle"
+            android:contentDescription="@string/refresh"
+            android:padding="7dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_refresh" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/rate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:singleLine="true"
+        android:text="1 THB = 0.0400 CAD"
+        android:textColor="@color/widget_text_dim"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:id="@+id/table"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:background="@drawable/table_bg"
+        android:orientation="vertical"
+        android:paddingStart="12dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="4dp">
+
+        <LinearLayout style="@style/WidgetRow">
+            <TextView android:id="@+id/amt1" style="@style/WidgetAmount" android:text="100 THB" />
+            <TextView android:id="@+id/val1" style="@style/WidgetValue" android:text="4.00 CAD" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/WidgetRow">
+            <TextView android:id="@+id/amt2" style="@style/WidgetAmount" android:text="500 THB" />
+            <TextView android:id="@+id/val2" style="@style/WidgetValue" android:text="20.00 CAD" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/WidgetRow">
+            <TextView android:id="@+id/amt3" style="@style/WidgetAmount" android:text="1,000 THB" />
+            <TextView android:id="@+id/val3" style="@style/WidgetValue" android:text="40.00 CAD" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/WidgetRow">
+            <TextView android:id="@+id/amt4" style="@style/WidgetAmount" android:text="5,000 THB" />
+            <TextView android:id="@+id/val4" style="@style/WidgetValue" android:text="200.00 CAD" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:singleLine="true"
+        android:text="Tap to convert any amount"
+        android:textColor="@color/widget_text_faint"
+        android:textSize="11sp" />
+</LinearLayout>

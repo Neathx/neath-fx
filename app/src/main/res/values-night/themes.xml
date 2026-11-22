@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.NeathFX" parent="android:Theme.DeviceDefault.NoActionBar" />
+    <style name="Base.NeathFX.Dialog" parent="android:Theme.DeviceDefault.Dialog.NoActionBar" />
+</resources>

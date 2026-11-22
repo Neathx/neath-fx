@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Neath FX</string>
+    <string name="widget_name">Currency converter</string>
+    <string name="widget_desc">Quick currency conversion, THB to CAD by default</string>
+    <string name="calc_title">Convert</string>
+    <string name="swap">Swap currencies</string>
+    <string name="refresh">Refresh rates</string>
+    <string name="attribution">Rates by https://www.exchangerate-api.com</string>
+</resources>
