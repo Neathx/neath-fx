@@ -1,11 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="widget_bg">#EB15181E</color>
-    <color name="widget_table">#14FFFFFF</color>
-    <color name="widget_button">#26FFFFFF</color>
-    <color name="widget_text">#FFFFFFFF</color>
-    <color name="widget_text_dim">#B3FFFFFF</color>
-    <color name="widget_text_faint">#80FFFFFF</color>
-    <color name="accent">#FFFFC94D</color>
     <color name="launcher_bg">#FF15181E</color>
 </resources>

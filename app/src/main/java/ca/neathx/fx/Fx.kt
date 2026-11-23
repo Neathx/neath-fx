@@ -170,14 +170,54 @@ object Fx {
         code
     }
 
-    /** Flag emoji from the currency code's country letters (EUR → 🇪🇺). */
-    fun flag(code: String): String {
-        if (code.length < 2 || code[0] == 'X') return "🌐"
-        val a = code[0].uppercaseChar()
-        val b = code[1].uppercaseChar()
-        if (a !in 'A'..'Z' || b !in 'A'..'Z') return "🌐"
-        return String(Character.toChars(0x1F1E6 + (a - 'A'))) +
-            String(Character.toChars(0x1F1E6 + (b - 'A')))
+    // ---- Widget theme ----
+
+    enum class Mode(val key: String, val label: String) {
+        AUTO("auto", "Follow phone (light by day, dark at night)"),
+        DARK("dark", "Always dark"),
+        LIGHT("light", "Always light"),
+    }
+
+    enum class DarkStyle(val key: String, val label: String) {
+        GRAPHITE("graphite", "Graphite: charcoal and gold"),
+        MIDNIGHT("midnight", "Midnight: navy and mint"),
+    }
+
+    fun mode(c: Context): Mode {
+        val k = prefs(c).getString("themeMode", Mode.AUTO.key)
+        return Mode.values().firstOrNull { it.key == k } ?: Mode.AUTO
+    }
+
+    fun darkStyle(c: Context): DarkStyle {
+        val k = prefs(c).getString("darkStyle", DarkStyle.GRAPHITE.key)
+        return DarkStyle.values().firstOrNull { it.key == k } ?: DarkStyle.GRAPHITE
+    }
+
+    fun setTheme(c: Context, mode: Mode, dark: DarkStyle) {
+        prefs(c).edit().putString("themeMode", mode.key).putString("darkStyle", dark.key).apply()
+    }
+
+    /** The generated widget layout for the chosen theme (see tools/gen_widget_themes.py). */
+    fun widgetLayout(c: Context): Int {
+        val midnight = darkStyle(c) == DarkStyle.MIDNIGHT
+        return when (mode(c)) {
+            Mode.AUTO -> if (midnight) R.layout.widget_auto_midnight else R.layout.widget_auto_graphite
+            Mode.DARK -> if (midnight) R.layout.widget_midnight else R.layout.widget_graphite
+            Mode.LIGHT -> R.layout.widget_light
+        }
+    }
+
+    // ---- Flags ----
+
+    private val FLAG_OVERRIDES = mapOf("EUR" to "eu", "ANG" to "cw")
+    private val flagCache = HashMap<String, Int>()
+
+    /** Flag image for a currency: its country's flag, or a neutral tile for shared currencies. */
+    fun flagRes(c: Context, code: String): Int = flagCache.getOrPut(code) {
+        val cc = FLAG_OVERRIDES[code]
+            ?: if (code.length >= 2 && code[0] != 'X') code.substring(0, 2).lowercase(Locale.ROOT) else null
+        val id = if (cc == null) 0 else c.resources.getIdentifier("flag_$cc", "drawable", c.packageName)
+        if (id != 0) id else R.drawable.flag_none
     }
 
     fun ago(ms: Long): String {

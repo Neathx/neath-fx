@@ -7,4 +7,7 @@
     <string name="swap">Swap currencies</string>
     <string name="refresh">Refresh rates</string>
     <string name="attribution">Rates by https://www.exchangerate-api.com</string>
+    <string name="clear">Clear amount</string>
+    <string name="theme">Widget theme</string>
+    <string name="choose_currency">Choose currency</string>
 </resources>

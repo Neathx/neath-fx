@@ -59,9 +59,12 @@ class FxWidgetProvider : AppWidgetProvider() {
 
         private fun build(context: Context): RemoteViews {
             val s = Fx.load(context)
-            val v = RemoteViews(context.packageName, R.layout.widget_fx)
+            val v = RemoteViews(context.packageName, Fx.widgetLayout(context))
 
-            v.setTextViewText(R.id.pair, "${Fx.flag(s.from)} ${s.from}  →  ${Fx.flag(s.to)} ${s.to}")
+            v.setImageViewResource(R.id.flag_from, Fx.flagRes(context, s.from))
+            v.setImageViewResource(R.id.flag_to, Fx.flagRes(context, s.to))
+            v.setTextViewText(R.id.code_from, s.from)
+            v.setTextViewText(R.id.code_to, s.to)
 
             val r = Fx.rate(s)
             if (r == null) {
